@@ -1,9 +1,12 @@
 import React from 'react'
 import { dummyPosts } from '../dummy/data'
 import PostCard from '../components/posts/post-card'
+import { auth } from '../../../auth'
 
 
-const App = () => {
+const App = async() => {
+  const session = await auth()
+  console.log(session?.user)
   console.log(dummyPosts)
   return (
 <main className="flex flex-col gap-4 mb-20  ">

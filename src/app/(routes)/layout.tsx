@@ -6,6 +6,7 @@ import Header from "../components/layout/header";
 import { usePathname } from "next/navigation";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
+    
     const [currentTab, setCurrentTab] = useState<string | null>(null);
     const pathname = usePathname()
     useEffect(() => {

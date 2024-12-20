@@ -1,8 +1,13 @@
+"use client"
+
+import { createPost } from '@/app/actions/post'
 import { ChevronDown,  Globe } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
 const CreatePost = () => {
+
+ 
   return (
    <article className="mt-3 w-3/5 border shadow-md  h-[28rem] rounded-xl bg-[#161616] p-5 relative">
    <div className='flex items-center gap-4'>
@@ -18,7 +23,7 @@ const CreatePost = () => {
        <Globe size={15}/> Public <span><ChevronDown size={15}/></span>
     </div>
    </div>
-   <div className="absolute bottom-5 right-5  border px-3 cursor-pointer py-1 rounded-full bg-purple-700">
+   <div onClick={createPost} className="absolute bottom-5 right-5  border px-3 cursor-pointer py-1 rounded-full bg-purple-700">
    
     Next
     

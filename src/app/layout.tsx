@@ -7,6 +7,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import { ReduxProvider } from "./components/providers/redux-provider";
 
 
+
 export const metadata: Metadata = {
   title: "Terovent",
   description: "An App for Introverts",
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`antialiased `}>
+  
         <ReduxProvider>
  
 
@@ -36,6 +38,7 @@ export default function RootLayout({
         
         </ThemeProvider>
         </ReduxProvider>
+  
         
       </body>
     </html>

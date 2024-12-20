@@ -1,4 +1,5 @@
 "use client"
+
 import { useSideBarRoutes } from '@/app/hooks/useSideBarRoutes'
 
 import { LucideIcon } from 'lucide-react'
@@ -35,6 +36,7 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({ icon: Icon, label, route })
 
 
 const SideBar = () => {
+  
     const {routes} = useSideBarRoutes()
   return (
  <aside className='h-screen fixed top-24 left-0 flex-shrink-0 w-[24rem] border-r p-8 flex flex-col  '>
