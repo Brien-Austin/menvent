@@ -1,6 +1,9 @@
+"use client"
 import { Post } from "@/app/types/post";
 import Image from "next/image";
 import { Heart, MessageCircle, Share2 } from "lucide-react";
+import { timePosted } from "@/app/utils/time-posted";
+import { useEffect, useState } from "react";
 
 const PostCard: React.FC<Post> = ({
   username,
@@ -11,7 +14,16 @@ const PostCard: React.FC<Post> = ({
   likes,
   comments,
 }) => {
-    console.log(profileUrl)
+  const [time,setTime] = useState<string>("")
+    useEffect(()=>{
+      const updateTime = () =>{
+        setTime(timePosted(postedTime.toString()))
+
+      }
+      updateTime()
+      const interval = setInterval(updateTime,6000)
+      return () => clearInterval(interval)
+    },[postedTime])
   return (
     <article className="border border-gray-200 dark:border-gray-800 p-4 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/10 transition-colors">
     
@@ -27,9 +39,9 @@ const PostCard: React.FC<Post> = ({
         </div>
         <div>
           <h2 className="font-semibold text-gray-900 dark:text-gray-100">
-            {username.toLowerCase()}
+            {username}
           </h2>
-          <p className="text-sm text-gray-500">{postedTime}</p>
+          <p className="text-sm text-gray-500">{time}</p>
         </div>
       </div>
 

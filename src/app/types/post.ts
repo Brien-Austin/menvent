@@ -2,7 +2,7 @@ export interface Post {
     username: string;
     postText: string;
     profileUrl: string;
-    postedTime : string;
+    postedTime : Date;
     likes: number;
     comments: number;
 }

@@ -1,36 +1,35 @@
-"use client"
+
 import React from 'react'
-import { dummyPosts } from '../dummy/data'
+
 import PostCard from '../components/posts/post-card'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { prisma } from '@/lib/db'
 
-const App = () => {
-  const {  status } = useSession()
-  const router = useRouter()
 
-  // Wait for the session to load before deciding
-  if (status === 'loading') {
-    return <div>Loading...</div>
-  }
-
-  // Only redirect if we're sure there's no session
-  if (status === 'unauthenticated') {
-    router.push('/login')
-    return null
-  }
+const App = async() => {
+  const posts = await prisma.post.findMany({
+    include : {
+      user : true,
+      likes : true,
+      comments : true
+    },
+    orderBy : {
+      createdAt : 'desc'
+    }
+  })
+  console.log(posts)
+ 
 
   return (
     <main className="flex flex-col gap-4 mb-20">
-      {dummyPosts.map((p, i) => (
+      {posts.map((p, i) => (
         <PostCard 
           key={i} 
-          postedTime={p.postedTime} 
-          username={p.username} 
-          profileUrl={p.profileUrl} 
+          postedTime={p.createdAt} 
+          username={p.user.name!} 
+          profileUrl={p.user.image!} 
           postText={p.postText} 
-          likes={p.likes} 
-          comments={p.comments} 
+          likes={p.likes.length} 
+          comments={p.comments.length} 
         />
       ))}
     </main>

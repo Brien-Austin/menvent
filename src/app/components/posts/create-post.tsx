@@ -5,7 +5,10 @@ import { ChevronDown,  Globe } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-const CreatePost = () => {
+interface CreatePostProps {
+  userId : string
+}
+const CreatePost:React.FC<CreatePostProps> = ({userId}) => {
 
  
   return (
@@ -23,7 +26,7 @@ const CreatePost = () => {
        <Globe size={15}/> Public <span><ChevronDown size={15}/></span>
     </div>
    </div>
-   <div onClick={createPost} className="absolute bottom-5 right-5  border px-3 cursor-pointer py-1 rounded-full bg-purple-700">
+   <div onClick={()=>createPost(userId)} className="absolute bottom-5 right-5  border px-3 cursor-pointer py-1 rounded-full bg-purple-700">
    
     Next
     

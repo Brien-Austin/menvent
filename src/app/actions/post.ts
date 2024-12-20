@@ -1,14 +1,15 @@
 'use server'
 import { prisma } from "@/lib/db"
 
-export async function createPost() {
+export async function createPost(userId : string) {
   
    try {
     const post = await prisma.post.create({
       data : {
-        title : "Brien",
-        content : "Hello World",
-        published : true
+        userId : userId,
+       
+        postText : "Feeling so bored 🥲, anyone up for a chat ??? "
+     
       }
     })
 

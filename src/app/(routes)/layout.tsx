@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../components/layout/sidebar";
 import RightSideBar from "../components/layout/right-sidebar";
 import Header from "../components/layout/header";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-    
+ 
     const [currentTab, setCurrentTab] = useState<string | null>(null);
+    const {  status } = useSession()
+    const router = useRouter()
     const pathname = usePathname()
     useEffect(() => {
         
@@ -22,6 +25,18 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             {children}</div>
             </>
         )
+    }
+   
+  
+  
+    if (status === 'loading') {
+      return <div>Loading...</div>
+    }
+  
+    
+    if (status === 'unauthenticated') {
+      router.push('/login')
+      return null
     }
   return (
     <main>
