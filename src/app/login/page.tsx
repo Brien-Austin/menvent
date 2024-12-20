@@ -1,7 +1,16 @@
-import { signIn } from "../../../auth"
+
+
+import { redirect } from "next/navigation"
+import { auth, signIn } from "../../../auth"
 import { FcGoogle } from 'react-icons/fc'
 
-export default function SignIn() {
+export default async function SignIn() {
+
+  const session = await auth()
+ 
+    if(session?.user){
+      return redirect('/')
+    }
   return (
     <main className="absolute flex flex-col items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform w-full max-w-screen-sm px-4">
       <form 
@@ -15,7 +24,7 @@ export default function SignIn() {
           Terovent
         </h1>
         
-        <p className="text-base sm:text-lg lg:text-xl text-gray-200 drop-shadow-md max-w-md">
+        <p className="text-base sm:text-lg lg:text-xl text-gray-800 dark:text-gray-300 drop-shadow-md max-w-md">
           An app made for textroverts to vent out easily
         </p>
 

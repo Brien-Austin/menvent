@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react"
 
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`antialiased `}>
+        <SessionProvider>
   
         <ReduxProvider>
  
@@ -38,6 +40,7 @@ export default function RootLayout({
         
         </ThemeProvider>
         </ReduxProvider>
+        </SessionProvider>
   
         
       </body>
