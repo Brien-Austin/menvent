@@ -5,7 +5,7 @@ import { prisma } from "@/lib/db";
 
 
 export const {handlers,signIn,signOut,auth}  = NextAuth({
-    secret : process.env.NEXTAUTH_SECRET,
+    secret : 'FU8XFlFMOR4girvJaoin9HoWAI7Uf+CDGaT4L0go8kU=',
    
     adapter : PrismaAdapter(prisma),
     providers : [Google]
