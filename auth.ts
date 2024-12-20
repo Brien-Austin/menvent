@@ -8,5 +8,8 @@ export const {handlers,signIn,signOut,auth}  = NextAuth({
     secret : 'FU8XFlFMOR4girvJaoin9HoWAI7Uf+CDGaT4L0go8kU=',
    
     adapter : PrismaAdapter(prisma),
-    providers : [Google]
+    providers : [Google({
+        clientId : process.env.AUTH_GOOGLE_ID,
+        clientSecret : process.env.AUTH_GOOGLE_SECRET
+    })]
 })
