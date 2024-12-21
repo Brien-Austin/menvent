@@ -9,7 +9,7 @@ const Create = async() => {
   const session = await auth()
  
   return (
-    <main className='p-8 flex flex-col w-full '>
+    <main className='p-8 flex flex-col w-full  h-full'>
       <Hero text='Create a Post'/>
      <Back/>
  {

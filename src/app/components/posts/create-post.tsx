@@ -42,7 +42,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
     }
   };
   return (
-    <article className="mt-3 lg:w-3/5 sm:w-full border shadow-md  h-[28rem] rounded-xl bg-[#161616] p-5 relative">
+    <article className="mt-3 lg:w-3/5 sm:w-full border shadow-md  lg:-[28rem] sm:h-full rounded-xl bg-[#161616] p-5 relative">
       <div className="flex items-center gap-4">
         <div className="w-10 h-10 rounded-full ring-2 ring-white relative overflow-hidden">
           <Image
@@ -60,7 +60,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
         </div>
       </div>
       <form className="mt-6" onSubmit={form.handleSubmit(onSubmit)}>
-        <textarea
+        <textarea autoComplete="on" autoFocus
           className="resize-none placeholder-gray-400 bg-[#161616] focus:outline-none w-full text-xl h-72 p-3"
           placeholder="Say something ...."
           {...form.register("postText")}

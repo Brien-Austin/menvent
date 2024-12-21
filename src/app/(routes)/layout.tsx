@@ -30,7 +30,16 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   
   
     if (status === 'loading') {
-      return <div>Loading...</div>
+      return <main className="p-5">
+        <div className="flex flex-col w-full gap-5">
+        <div className="h-32 w-full animate-pulse bg-[#161616] rounded-lg"></div>
+        <div className="h-32 w-full animate-pulse bg-[#161616] rounded-lg"></div>
+        <div className="h-32 w-full animate-pulse bg-[#161616] rounded-lg"></div>
+        <div className="h-32 w-full animate-pulse bg-[#161616] rounded-lg"></div>
+        <div className="h-32 w-full animate-pulse bg-[#161616] rounded-lg"></div>
+        <div className="h-32 w-full animate-pulse bg-[#161616] rounded-lg"></div>
+        </div>
+      </main>
     }
   
     
