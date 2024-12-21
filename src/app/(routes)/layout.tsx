@@ -54,9 +54,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <div>
       {" "}
       <SideBar />
+      <MobileNavBar/>
    
       
-      <div className={`lg:w-full lg:mt-24 sm:mt-0 lg:pl-[25rem] lg:pr-[25rem] sm:pr-0 sm:pl-0  ${currentTab !== 'feed' && pathname != "/" && ' mt-0' }`}>   <MobileNavBar/> {children}</div>
+      <div className={`lg:w-full lg:mt-24 sm:mt-0 lg:pl-[25rem] lg:pr-[25rem] sm:pr-0 sm:pl-0  ${currentTab !== 'feed' && pathname != "/" && ' mt-0' }`}>   {children}</div>
       <RightSideBar />
     </div>
     </main>
