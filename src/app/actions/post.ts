@@ -8,7 +8,7 @@ export async function createPost(userId: string,postText : string, isPublic : bo
       data: {
         userId: userId,
         postText: postText,
-        isAnonymous : isPublic
+        isAnonymous : !isPublic
       }
     });
 
