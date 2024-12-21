@@ -18,19 +18,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       const savedTab = localStorage.getItem("currentTab");
       setCurrentTab(savedTab);
     }, []);
-  if(  pathname != "/"){
-      return (
-          <>
-          <SideBar/>
-          <MobileNavBar/>
-          <div className="flex mt-0 w-full"><Header/>
-          {children}</div>
-          </>
-      )
-  }
- 
 
-
+  // Loading state
   if (status === 'loading') {
     return <main className="p-5">
       <div className="flex flex-col w-full gap-5">
@@ -44,24 +33,37 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     </main>
   }
 
-  
+  // Unauthenticated state
   if (status === 'unauthenticated') {
     router.push('/login')
     return null
   }
-return (
-  <main>
-      <Header/>
-      <div>
-    {" "}
-    <SideBar />
-    <MobileNavBar/>
- 
-    
-    <div className={`lg:w-full lg:mt-24 sm:mt-0 lg:pl-[25rem] lg:pr-[25rem] sm:pr-0 sm:pl-0  ${currentTab !== 'feed' && pathname != "/" && ' mt-0' }`}>   {children}</div>
-    <RightSideBar />
-  </div>
-  </main>
-);
+
+  // Render MobileNavBar outside of all conditional returns
+  return (
+    <>
+      <MobileNavBar/>
+      {pathname != "/" ? (
+        <>
+          <SideBar/>
+          <div className="flex mt-0 w-full">
+            <Header/>
+            {children}
+          </div>
+        </>
+      ) : (
+        <main>
+          <Header/>
+          <div>
+            <SideBar />
+            <div className={`lg:w-full lg:mt-24 sm:mt-0 lg:pl-[25rem] lg:pr-[25rem] sm:pr-0 sm:pl-0  ${currentTab !== 'feed' && pathname != "/" && ' mt-0' }`}>
+              {children}
+            </div>
+            <RightSideBar />
+          </div>
+        </main>
+      )}
+    </>
+  );
 };
 export default RootLayout;
