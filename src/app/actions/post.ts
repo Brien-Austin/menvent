@@ -2,12 +2,13 @@
 import { prisma } from "@/lib/db"
 import { auth } from "../../../auth";
 
-export async function createPost(userId: string,postText : string) {
+export async function createPost(userId: string,postText : string, isPublic : boolean) {
   try {
     const post = await prisma.post.create({
       data: {
         userId: userId,
-        postText: postText
+        postText: postText,
+        isAnonymous : isPublic
       }
     });
 
@@ -28,6 +29,8 @@ export async function getPosts() {
       createdAt: 'desc'
     }
   });
+
+  
   
 
 

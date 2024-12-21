@@ -15,6 +15,8 @@ const App = () => {
     setPosts(newPosts);
   };
 
+
+
   const POLLING_INTERVAL = 3000;
 
 
@@ -51,6 +53,7 @@ const App = () => {
 
       {posts.map((p, i) => (
         <PostCard
+        isAnonymous= {p.isAnonymous}
           likedData={p.likes}
           key={i}
           id={p.id}

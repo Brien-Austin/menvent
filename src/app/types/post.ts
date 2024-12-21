@@ -1,6 +1,7 @@
 
 export interface Post {
     id : string;
+    isAnonymous : boolean;
     likedData : Like[] | null;
     userId : string | undefined;
     username: string ;
@@ -42,6 +43,7 @@ interface Comment {
 
 interface PostType {
     id: string;
+    isAnonymous : boolean
     userId: string;
     postText: string | null;
     createdAt: Date;

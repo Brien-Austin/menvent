@@ -8,6 +8,7 @@ import { toggleLike } from "@/app/actions/post";
 import { useSession } from "next-auth/react";
 import { getUserId } from "@/app/actions/profile";
 
+
 const PostCard: React.FC<Post> = ({
   username,
   id,
@@ -16,6 +17,7 @@ const PostCard: React.FC<Post> = ({
   postedTime,
   likedData,
   likes,
+  isAnonymous,
   comments,
 }) => {
   const [time, setTime] = useState<string>("");
@@ -101,7 +103,7 @@ const PostCard: React.FC<Post> = ({
       <div className="flex items-center gap-3 mb-4">
         <div className="h-10 w-10 rounded-full overflow-hidden relative">
           <Image
-            src={profileUrl}
+            src={ isAnonymous ? `https://api.dicebear.com/7.x/avataaars/svg?seed=6` : profileUrl}
             alt={`${username}'s profile picture`}
             width={40}
             height={40}
@@ -111,7 +113,7 @@ const PostCard: React.FC<Post> = ({
         </div>
         <div>
           <h2 className="font-semibold text-gray-900 dark:text-gray-100">
-            {username}
+            { isAnonymous ? "Anonymous" : username}
           </h2>
           <p className="text-sm text-gray-500">{time}</p>
         </div>

@@ -28,6 +28,7 @@ model Post {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   userId   String @db.ObjectId
   postText String
+  isAnonymous Boolean @default(false)
 
   comments  Comment[]
   likes     Like[]
