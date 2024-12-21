@@ -96,7 +96,7 @@ const PostCard: React.FC<Post> = ({
   };
 
   return (
-    <article className="border border-gray-200 dark:border-gray-800 p-4 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/10 transition-colors">
+    <article className="border border-gray-200 dark:border-gray-800 p-4 rounded-xl hover:bg-purple-50 dark:sm:hover:bg-none dark:hover:bg-purple-900/10 transition-colors">
       <div className="flex items-center gap-3 mb-4">
         <div className="h-10 w-10 rounded-full overflow-hidden relative">
           <Image
