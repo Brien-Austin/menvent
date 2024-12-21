@@ -35,7 +35,7 @@ const formSchema = z.object({
 
 const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
   const router = useRouter();
-  const [isPublic, setIsPublic] = useState(false);
+  const [isPublic, setIsPublic] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
