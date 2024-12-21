@@ -37,10 +37,10 @@ const Header = () => {
   return (
     <nav>
       <div
-        className={`fixed dark:bg-[#0A0A0A] z-50 top-0 left-0 w-full h-20 dark:bg-none p-5 ${
-            pathname !== "/" && "relative bg-none"
-        }`}
-      >
+  className={`lg:fixed lg:block sm:hidden lg:dark:bg-[#0A0A0A] lg:z-50 lg:top-0 lg:left-0 lg:w-full lg:h-20 lg:dark:bg-none lg:p-5 ${
+    pathname !== "/" && "lg:relative lg:bg-none"
+  }`}
+>
         <div className="flex justify-between items-center">
           <Logo />
           <div className="flex items-center gap-10">

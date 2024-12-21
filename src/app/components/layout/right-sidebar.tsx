@@ -13,9 +13,10 @@ const RightSideBar = () => {
 
     return (
         <aside>
-            <div className='h-screen fixed right-0 top-24 flex-shrink-0 w-[24rem] border-l p-8'>
-                {currentTab}
-            </div>
+          <div className='lg:h-screen sm:hidden lg:fixed lg:right-0 lg:top-24 lg:flex-shrink-0 lg:w-[24rem] lg:border-l lg:p-8 lg:flex'>
+  {currentTab}
+</div>
+
         </aside>
     )
 }

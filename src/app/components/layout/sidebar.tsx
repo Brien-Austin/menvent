@@ -12,7 +12,7 @@ const SideBar = () => {
   const {data:session} = useSession()
   console.log(session)
   return (
-    <aside className="h-screen fixed top-24 left-0 flex-shrink-0 w-[24rem] border-r p-8 flex flex-col  ">
+    <aside className="lg:h-screen lg:fixed lg:top-24 lg:left-0 lg:flex-shrink-0 lg:w-[24rem] lg:border-r lg:p-8 lg:flex lg:flex-col  sm:hidden">
       <section>
         {" "}
         {routes.map((r, i) => (

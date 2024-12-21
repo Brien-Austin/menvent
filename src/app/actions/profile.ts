@@ -8,3 +8,8 @@ export async function getProfile() {
     return session?.user.image
 
 }
+
+export async function getUserId() {
+    const session = await auth()
+    return session?.user.id
+}

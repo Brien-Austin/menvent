@@ -17,7 +17,7 @@ const SideBarItems: React.FC<SideBarItemsProps> = ({ icon: Icon, label, route })
     const isActive = pathname.replace(/\/$/, '') === route.replace(/\/$/, '');
 
     return (
-        <Link href={route} className={`flex items-center space-x-4 p-2 hover:bg-gray-100 dark:hover:bg-neutral-900 dark:rounded-lg dark:px-3 dark:transition dark:delay-50 dark:py-2 cursor-pointer ` }>
+        <Link href={route} className={`flex  items-center space-x-4 p-2 hover:bg-gray-100 dark:hover:bg-neutral-900 dark:rounded-lg dark:px-3 dark:transition dark:delay-50 dark:py-2 cursor-pointer ` }>
           
             <div className="w-8 flex justify-center">
                 <Icon className={`  ${isActive && 'dark:text-purple-600 '}`} />

@@ -6,6 +6,7 @@ import { ThemeProvider } from "./components/theme-provider";
 
 
 import { ReduxProvider } from "./components/providers/redux-provider";
+import { ToastProvider } from "./components/providers/toast-providers";
 
 
 
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`antialiased `}>
         <SessionProvider>
+          <ToastProvider/>
   
         <ReduxProvider>
  

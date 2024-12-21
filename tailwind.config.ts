@@ -10,7 +10,7 @@ export default {
   theme: {
   	extend: {
 		screens : {
-			sm : "320px"
+			"sm" : "320px"
 		},
   		colors: {
   			background: 'hsl(var(--background))',
@@ -61,5 +61,6 @@ export default {
   		}
   	}
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

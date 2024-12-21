@@ -25,12 +25,13 @@ model User {
 }
 
 model Post {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId   String    @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String @db.ObjectId
   postText String
 
-  comments Comment[]
-  likes Like[]
+  comments  Comment[]
+  likes     Like[]
+  likeCount Int       @default(0)
 
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
@@ -39,7 +40,7 @@ model Post {
 
 model Comment {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  text      String  
+  text      String
   userId    String   @db.ObjectId
   postId    String   @db.ObjectId
   user      User     @relation(fields: [userId], references: [id])
@@ -56,7 +57,7 @@ model Like {
   post      Post     @relation(fields: [postId], references: [id])
   createdAt DateTime @default(now())
 
-  @@unique([userId, postId]) 
+  @@unique([userId, postId])
 }
 
 model Account {
