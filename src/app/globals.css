@@ -6,6 +6,9 @@
 * {
   font-family: Poppins;
 }
+*::-webkit-scrollbar {
+  display: none;
+}
 
 body {
   font-family: Arial, Helvetica, sans-serif;

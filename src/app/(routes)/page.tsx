@@ -5,6 +5,7 @@ import PostCard from "../components/posts/post-card";
 
 import { getPosts } from "../actions/post";
 import { PostType } from "../types/post";
+import Hero from "../components/layout/hero";
 
 const App = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -15,7 +16,7 @@ const App = () => {
   };
 
   const POLLING_INTERVAL = 3000;
-  
+
 
   useEffect(() => {
     fetchPosts();
@@ -41,7 +42,13 @@ const App = () => {
   }
 
   return (
-    <main className="flex flex-col gap-4 mb-20 sm:p-5 lg:p-0">
+    <main className="  flex flex-col mt-20 gap-4 mb-20 sm:p-5 lg:p-0">
+      <div className="fixed top-0 z-50 left-0 h-20 w-full backdrop-blur-lg  bg-[#161616] bg-opacity-40">
+  <div className="pt-6 px-5">
+    <Hero text="Terovent" />
+  </div>
+</div>
+
       {posts.map((p, i) => (
         <PostCard
           likedData={p.likes}

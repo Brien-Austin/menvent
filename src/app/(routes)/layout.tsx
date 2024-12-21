@@ -19,7 +19,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       setCurrentTab(savedTab);
     }, []);
 
-  // Loading state
+
   if (status === 'loading') {
     return <main className="p-5">
       <div className="flex flex-col w-full gap-5">
@@ -33,13 +33,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     </main>
   }
 
-  // Unauthenticated state
+
   if (status === 'unauthenticated') {
     router.push('/login')
     return null
   }
 
-  // Render MobileNavBar outside of all conditional returns
+ 
   return (
     <>
       <MobileNavBar/>
