@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 
 const ProfileComponent = () => {
     const [profile,setProfile] = useState<string>()
+ 
     
     async function fetchProfile() {
         const profile = await getProfile()
