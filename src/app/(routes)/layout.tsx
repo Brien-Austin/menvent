@@ -5,6 +5,7 @@ import RightSideBar from "../components/layout/right-sidebar";
 import Header from "../components/layout/header";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import MobileNavBar from "../components/layout/mobile-navbar";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
  
@@ -53,8 +54,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <div>
       {" "}
       <SideBar />
+   
       
-      <div className={`lg:w-full lg:mt-24 sm:mt-0 lg:pl-[25rem] lg:pr-[25rem] sm:pr-0 sm:pl-0  ${currentTab !== 'feed' && pathname != "/" && ' mt-0' }`}> {children}</div>
+      <div className={`lg:w-full lg:mt-24 sm:mt-0 lg:pl-[25rem] lg:pr-[25rem] sm:pr-0 sm:pl-0  ${currentTab !== 'feed' && pathname != "/" && ' mt-0' }`}>   <MobileNavBar/> {children}</div>
       <RightSideBar />
     </div>
     </main>

@@ -63,24 +63,25 @@ const PostCard: React.FC<Post> = ({
   
     setIsLoading(true);
   
-  
+    // Optimistically update the like state before the server request
     const newLikeState = !optimisticallyLiked;
     setOptimisticallyLiked(newLikeState);
     setOptimisticLikeCount((prev) => newLikeState ? prev + 1 : prev - 1);
   
     try {
-   
+      // Send the request to toggle the like status on the server
       await toggleLike(id);
     } catch (error) {
       console.error("Error toggling like:", error);
   
-      
+      // If the like toggle fails, revert the UI back to the previous state
       setOptimisticallyLiked(!newLikeState);
       setOptimisticLikeCount((prev) => newLikeState ? prev - 1 : prev + 1);
     } finally {
       setIsLoading(false);
     }
   };
+  
   
 
   const handleShare = async () => {
