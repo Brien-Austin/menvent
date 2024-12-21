@@ -5,7 +5,7 @@ import { type LucideIcon,  Sparkle } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-import { Button } from '@/components/ui/button'
+
 import ProfileComponent from './profile-component'
 
 const MobileNavBar = () => {
@@ -35,7 +35,7 @@ interface MobileNavItemProps {
 
 const MobileNavBarItem: React.FC<MobileNavItemProps> = ({ icon: Icon, route, isActive }) => {
   return (
-    <Link href={route} className={`flex flex-col items-center justify-center ${isActive ? 'text-white' : 'text-purple-200'}`}>
+    <Link href={route} className={`flex flex-col items-center justify-center ${isActive ? 'text-purple-600' : 'text-purple-200'}`}>
      {
         Icon ? <Icon className='w-6 h-6' />: <ProfileComponent/>
      }
@@ -46,13 +46,13 @@ const MobileNavBarItem: React.FC<MobileNavItemProps> = ({ icon: Icon, route, isA
 
 const CreateButton = () => {
   return (
-    <Button
-      className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full w-14 h-14 bg-[#252525] ring-2 ring-purple-600 hover:bg-purple-600 text-white shadow-lg"
-      size="icon"
+    <Link href={'/create'}
+      className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full w-14 h-14 bg-[#252525] ring-2 ring-purple-600 hover:bg-purple-600 text-white shadow-lg flex justify-center items-center"
+   
     >
      <Sparkle size={24}/>
       <span className="sr-only">Create</span>
-    </Button>
+    </Link>
   )
 }
 
