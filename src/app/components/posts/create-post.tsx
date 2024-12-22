@@ -3,14 +3,14 @@ import * as z from "zod";
 import { createPost } from "@/app/actions/post";
 import { ChevronDown, Globe, UserCircle2 } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import {
   AlertDialog,
+  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -19,8 +19,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
 import { Button } from "@/components/ui/button";
+import { getCategories } from "@/app/actions/category";
+import { Category } from "@/app/types/post";
+import SelectCategories from "./select-category";
 
 interface CreatePostProps {
   userId: string;
@@ -34,6 +36,9 @@ const formSchema = z.object({
 });
 
 const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedcategory, setSelectedCategory] = useState<string | undefined>();
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const router = useRouter();
   const [isPublic, setIsPublic] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -46,12 +51,30 @@ const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  useEffect(() => {
+    async function fetchCategory() {
+      const categories = await getCategories();
+      if (categories) {
+        setCategories(categories);
+      }
+    }
+    fetchCategory();
+  }, []);
+
+  const handleCreatePost = async () => {
     try {
+      if (!selectedcategory) {
+        toast.error("Please select a category before posting");
+        return;
+      }
+      
+      const values = form.getValues();
+      
       if (userId) {
-        await createPost(userId, values.postText, values.isPublic);
+        await createPost(userId, values.postText, values.isPublic, selectedcategory);
         toast.success("Post created successfully");
         form.reset();
+        setIsCategoryOpen(false);
         router.push("/");
       }
     } catch (error) {
@@ -64,6 +87,15 @@ const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
     setIsPublic(newVisibility);
     form.setValue("isPublic", newVisibility);
     setIsDialogOpen(false);
+  };
+
+  const handleNext = () => {
+    const { postText } = form.getValues();
+    if (postText.length < 10) {
+      toast.error("Post has to be at least a sentence");
+      return;
+    }
+    setIsCategoryOpen(true);
   };
 
   return (
@@ -122,7 +154,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
                 <UserCircle2 size={15} />
                 Anonymous
                 <span className="text-sm text-neutral-400">
-                  - Your name won &apos; t be shown
+                  - Your name won &apos;t be shown
                 </span>
               </Button>
             </div>
@@ -133,7 +165,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
         </AlertDialog>
       </div>
 
-      <form className="mt-6" onSubmit={form.handleSubmit(onSubmit)}>
+      <div className="mt-6">
         <textarea
           autoComplete="on"
           autoFocus
@@ -141,13 +173,42 @@ const CreatePost: React.FC<CreatePostProps> = ({ userId }) => {
           placeholder="Say something ...."
           {...form.register("postText")}
         />
-        <button
-          type="submit"
-          className="absolute bottom-5 flex items-center gap-2 right-5 border px-3 cursor-pointer py-1 rounded-full bg-purple-700"
-        >
-          Post
-        </button>
-      </form>
+        <AlertDialog open={isCategoryOpen} onOpenChange={setIsCategoryOpen}>
+          <AlertDialogTrigger>
+            <button
+              type="button"
+              onClick={handleNext}
+              className="absolute bottom-5 flex items-center gap-2 right-5 border px-3 cursor-pointer py-1 rounded-full bg-purple-700"
+            >
+              Next
+            </button>
+          </AlertDialogTrigger>
+          <AlertDialogContent className="sm:w-4/5 lg:w-full">
+            <AlertDialogTitle>Pick a mood</AlertDialogTitle>
+            <AlertDialogDescription>
+              Select a mood of the post
+            </AlertDialogDescription>
+            <section className="grid grid-cols-2">
+              {categories.map((c, i) => (
+                <SelectCategories
+                  key={i}
+                  category={c}
+                  setSelectedCategory={setSelectedCategory}
+                />
+              ))}
+            </section>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleCreatePost}
+                disabled={!selectedcategory}
+              >
+                Create Post
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </div>
     </article>
   );
 };

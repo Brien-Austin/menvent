@@ -40,6 +40,15 @@ interface Comment {
     createdAt: Date;
     updatedAt: Date;
 }
+export interface Category {
+    id: string;
+    name: string | null;
+    emoji: string | null;
+    description?: string | null;
+    postId?: string;
+    posts?: Post;
+  }
+  
 
 interface PostType {
     id: string;

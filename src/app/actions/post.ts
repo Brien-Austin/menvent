@@ -2,13 +2,18 @@
 import { prisma } from "@/lib/db"
 import { auth } from "../../../auth";
 
-export async function createPost(userId: string,postText : string, isPublic : boolean) {
+export async function createPost(userId: string,postText : string, isPublic : boolean,category : string) {
   try {
     const post = await prisma.post.create({
       data: {
         userId: userId,
         postText: postText,
-        isAnonymous : !isPublic
+        isAnonymous : !isPublic,
+        category : {
+          connect : {
+            id : category
+          }
+        }
       }
     });
 
@@ -17,6 +22,7 @@ export async function createPost(userId: string,postText : string, isPublic : bo
     console.log('[POST_CREATION_ERROR]', error);
   }
 }
+
 
 export async function getPosts() {
   const posts = await prisma.post.findMany({
