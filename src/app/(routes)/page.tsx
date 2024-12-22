@@ -45,7 +45,7 @@ const App = () => {
 
   return (
     <main className="  flex flex-col mt-20 gap-4 mb-20 sm:p-5 lg:p-0">
-      <div className="fixed top-0 z-50 left-0 h-20 w-full backdrop-blur-lg  bg-[#161616] bg-opacity-40">
+      <div className="sm:fixed lg:hidden top-0 z-50 left-0 h-20 w-full backdrop-blur-lg  bg-[#161616] bg-opacity-40">
   <div className="pt-6 px-5">
     <Hero text="Terovent" />
   </div>

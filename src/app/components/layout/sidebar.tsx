@@ -5,7 +5,8 @@ import Image from "next/image";
 
 import React from "react";
 import SideBarItems from "./sidebar-items";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { LogOut } from "lucide-react";
 
 const SideBar = () => {
   const { routes } = useSideBarRoutes();
@@ -28,8 +29,8 @@ const SideBar = () => {
 
       <hr className="mt-6 border-neutral-600" />
       <section className="fixed left-5 bottom-5">
-        <div className="flex items-center gap-2">
-          <div className="w-12 h-12 rounded-full ring-2 ring-white relative overflow-hidden">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-full ring-2 ring-white relative overflow-hidden">
             {
               session?.user.image && <Image
               src={session?.user.image}
@@ -39,7 +40,11 @@ const SideBar = () => {
             />
             }
           </div>
+          <div className="flex flex-col gap-1">
           <h1>Brien</h1>
+          <button onClick={()=>signOut()} className=" border  px-2 py-1 rounded-lg text-xs flex items-center gap-2"><LogOut size={12}/>Logout</button>
+          </div>
+          
         </div>
       </section>
     </aside>
