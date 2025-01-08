@@ -3,9 +3,16 @@
 import { auth } from "../../../auth"
 
 
-export async function getProfile() {
+export async function getProfile():Promise<string|null> {
+   try {
     const session = await auth()
-    return session?.user.image
+    return session?.user.image ?? null
+    
+   } catch (error) {
+    console.log('[PROFILE_FETCH_ERROR]',error)
+    return null
+    
+   }
 
 }
 

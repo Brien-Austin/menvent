@@ -1,4 +1,4 @@
-import { CirclePlus, DoorOpen, Home, MessageSquareText } from "lucide-react";
+import { CirclePlus, DoorOpen, Home, MessageSquareText, UserRound } from "lucide-react";
 import { useMemo } from "react";
 
 export const useSideBarRoutes = () => {
@@ -33,6 +33,12 @@ export const useSideBarRoutes = () => {
         route : '/messages'
 
         
+    },
+    {
+      icon : UserRound,
+      label : 'Profile',
+      slug : 'profile',
+      route : '/profile'
     }
     ],
     []

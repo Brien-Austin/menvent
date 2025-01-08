@@ -7,6 +7,7 @@ import { ThemeProvider } from "./components/theme-provider";
 
 import { ReduxProvider } from "./components/providers/redux-provider";
 import { ToastProvider } from "./components/providers/toast-providers";
+import { ReactQueryClientProvider } from "./components/providers/react-queryprovider";
 
 
 
@@ -22,6 +23,7 @@ export default function RootLayout({
 }>) {
   
   return (
+    <ReactQueryClientProvider>
     <html lang="en" suppressHydrationWarning>
       <body className={`antialiased `}>
         <SessionProvider>
@@ -47,5 +49,6 @@ export default function RootLayout({
         
       </body>
     </html>
+    </ReactQueryClientProvider>
   );
 }
